@@ -40,14 +40,15 @@ struct ProfileView: View {
                 
                 Button(action: {
                     isEditing.toggle()
+                    
                 }) {
                     Text("изменить")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .padding()
                         .frame(width: 200, height: 50)
-                        .background(Color.but)
-                        .cornerRadius(100)
+                        .background(Color.asv)
+
                 }
             }
             .sheet(isPresented: $isEditing) {
@@ -61,6 +62,7 @@ struct ProfileView: View {
             }) {
                 Image(systemName: "gear")
             })
+            .foregroundColor(.black)
         }
         .sheet(isPresented: $showSettings) {
             SettingsView()

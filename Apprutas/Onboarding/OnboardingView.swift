@@ -10,12 +10,31 @@ import SwiftUI
 struct OnboardingView: View {
     var data: OnboardingData
     var body: some View {
+        
+        
+        ZStack {
+            
+            Image("wow")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+        
         VStack {
             Text(data.title).font(.largeTitle)
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(10)
             Text(data.description).font(.body)
-                .multilineTextAlignment(.center)
-                .padding(5)
+                .multilineTextAlignment(.leading)
+                .padding(10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+        }
+        .padding(.bottom, 5)
+        
+        
+        
+        
         }
         
     }

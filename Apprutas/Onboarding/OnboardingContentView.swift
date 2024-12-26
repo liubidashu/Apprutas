@@ -30,15 +30,20 @@ struct OnboardingContentView: View {
                 if currentPage > 0 {
                     Button("Назад"
                            , action: { currentPage -= 1 })
+                    .foregroundColor(.black)
                 }
+                
                 Spacer()
                 if currentPage < pages.count - 1 {
                     Button ("Далее"
                             , action: { currentPage += 1 })
+                    .foregroundColor(.black)
+                    
                 }
                 else {
-                    Button ("Начать") {
+                    Button ("Начать"){
                     }
+                    .foregroundColor(.black)
                 }
             }
             .padding()

@@ -11,37 +11,57 @@ struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
     var body: some View {
-        VStack {
-            Text("Вход в аккаунт")
-                .font(.largeTitle)
-                .padding(.bottom, 40)
-            TextField("никнейм", text: $username)
-                .padding()
-                .background(Color(.log))
-                .cornerRadius(100.0)
-                .padding(10)
+        ZStack {
+            Image("fon")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
             
-            SecureField("пароль", text: $password)
-                .padding()
-                .background(Color(.log))
-                .cornerRadius(100.0)
-                .padding(10)
             
-            Button(action: {
-            print("Button tapped")
-            }) 
             
-            {
-                Text ("войти")
-                    .font(.headline)
-                    .foregroundColor(.white)
+            VStack {
+                Text("привет!")
+                    .font(.largeTitle)
+                    .padding(10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Text("авторизуйся, чтобы публиковать маршруты и участвовать в обсуждениях")
+                    .font(.title3)
+                    .padding(.bottom, 20)
+                    .font(.body)
+//                    .frame(width: 300, alignment: .leading)
+                
+                
+                
+                
+                TextField("никнейм", text: $username)
                     .padding()
-                    .frame(width: 171, height: 45)
-                    .background(Color.but)
-                    .cornerRadius(100.0)
+                    .background(Color(.asv))
+                    .padding(10)
+                    .font(.footnote)
+                
+                SecureField("пароль", text: $password)
+                    .padding()
+                    .background(Color(.asv))
+                    .font(.footnote)
+                
+                    .padding(10)
+                
+                Button(action: {
+                    print("Button tapped")
+                }){
+                    Text ("войти")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .padding()
+                        .frame(width: 171, height: 45)
+                        .background(Color.asv)
+                }
+                .padding()
             }
-            .padding()
+            
         }
+        
     }
 }
 #Preview {
