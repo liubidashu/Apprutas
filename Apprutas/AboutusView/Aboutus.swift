@@ -19,7 +19,7 @@ struct AboutusView: View {
                         Rectangle ()
                             .frame(width: 290, height: 30)
                             .foregroundStyle(.clear)
-                        NavigationLink(destination: MenuContentView()) {
+
                             Image("nop")
                                 .resizable()
                                 .frame(width: 30,height: 30)
@@ -57,7 +57,6 @@ struct AboutusView: View {
                 
             }
         }
-    }
 }
 
 #Preview {

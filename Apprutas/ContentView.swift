@@ -8,69 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: RouteListViewModel
+
     var body: some View {
-        
         NavigationView {
-            
-            ScrollView {
-                
-                
-                VStack {
-                    
-                    
-                    NavigationLink(destination: MenuContentView() ){
-                        Image("glav")
-                            .resizable()
-                            .scaledToFill()
-                        .edgesIgnoringSafeArea(.all)}
-
-                        
-
-                            
-
-                        
-
-                    
-                    
-                    
-                    
-                    
-                    Image("perv")
-                        .resizable()
-                        .padding(20)
-                    
-                    NavigationLink(destination: TrailsView() ) {
-                        Image("yuo")
-                            .resizable()
-                        .padding(20)}
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+            VStack {
+                if viewModel.isLoading {
+                    ProgressView("Загрузка...")
+                } else if let errorMessage = viewModel.errorMessage {
+                    Text("Ошибка: \(errorMessage)")
+                        .foregroundColor(.red)
+                } else {
+                    List {
+                        ForEach(viewModel.routes) { route in
+                            RouteRow(route: route)
+                                .listRowSeparator(.hidden)
+                        }
+                        .listRowInsets(EdgeInsets())
+                    }
+                    .listStyle(.plain)
+                    .padding(.horizontal)
                 }
-                
-                
-                
-                
-                
             }
-            .ignoresSafeArea()
+            .navigationTitle("Маршруты")
+            .onAppear {
+                viewModel.loadRoutes() 
+            }
         }
-        
-        
-
-        }
-    
-    
-    
-    
-    
     }
-
+}
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: RouteListViewModel())
 }
