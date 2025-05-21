@@ -19,7 +19,7 @@ struct RootTabView: View {
                 }
                 .tag(0) 
 
-            FandomView()
+            CommunityView()
                 .tabItem {
                     Image(selectedTab == 1 ? "fandom_icon_active" : "fandom_icon_inactive")
                 }
@@ -37,7 +37,7 @@ struct RootTabView: View {
                 }
                 .tag(3)
 
-            FindView()
+            SearchView()
                 .tabItem {
                     Image(selectedTab == 4 ? "search_icon_active" : "search_icon_inactive")
                 }

@@ -13,45 +13,45 @@ class RouteListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String? = nil
 
+    private let decoder = JSONDecoder()
     private var cancellables = Set<AnyCancellable>()
 
     func loadRoutes() {
         isLoading = true
         errorMessage = nil
 
-        
         guard let url = URL(string: "http://localhost:3000/api/v1/trails") else {
             errorMessage = "Неверный URL"
             isLoading = false
             return
         }
 
-    
-        URLSession.shared.dataTaskPublisher(for: url)
-            
-            .tryMap { (data, response) -> Data in
-                guard let httpResponse = response as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
-                    throw URLError(.badServerResponse)
+        URLSession.shared.dataTask(with: URLRequest(url: url)) { [weak self] data, response, error in
+            guard let self else { return }
+            guard
+                let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode),
+                let data
+            else {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.errorMessage = URLError(.badServerResponse).localizedDescription
                 }
-                return data
+                return
             }
-            
-            .decode(type: [Route].self, decoder: JSONDecoder())
 
-            .receive(on: DispatchQueue.main)
-         
-            .sink(receiveCompletion: { completion in
-                self.isLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+            do {
+                let result = try decoder.decode([Route].self, from: data)
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.routes = result
                 }
-            }, receiveValue: { receivedRoutes in
-                self.routes = receivedRoutes
-            })
-            .store(in: &cancellables)
+            } catch(let error) {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                    self.errorMessage = error.localizedDescription + "наша ошибка"
+                }
+            }
+        }.resume()
     }
 }

@@ -18,7 +18,7 @@ struct SplashScreenView: View {
         Group {
             if isActive {
                 if authViewModel.isAuthenticated {
-                    RootTabView()
+                    RootTabView() // Тут ничего не надо менять
                 } else {
                     AuthView()
                 }

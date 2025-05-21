@@ -30,7 +30,7 @@ struct ContentView: View {
                     .padding(.horizontal)
                 }
             }
-            .navigationTitle("Маршруты")
+            .navigationTitle("маршруты")
             .onAppear {
                 viewModel.loadRoutes() 
             }

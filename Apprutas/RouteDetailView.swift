@@ -18,13 +18,11 @@ struct RouteDetailView: View {
                 .font(.headline)
                 .foregroundColor(.secondary)
             
-            Text("Город: \(route.city)")
-                .font(.subheadline)
+//            Text("Город: \(route.city)")
+//                .font(.subheadline)
             
-            if let body = route.body {
-                Text(body)
+            Text(route.body)
                     .padding(.top)
-            }
         }
         .padding()
         .navigationTitle(route.title)

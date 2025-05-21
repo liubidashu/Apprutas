@@ -18,9 +18,9 @@ struct RouteRow: View {
                     .foregroundColor(.black)
 
                 HStack {
-                    Text(route.city)  // Город
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+//                    Text(route.)  // Город
+//                        .font(.subheadline)
+//                        .foregroundColor(.gray)
 
                     Text(route.fandom.name) // Название фандома
                         .font(.subheadline)
