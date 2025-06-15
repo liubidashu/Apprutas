@@ -34,6 +34,8 @@
 		CA60DFC62D1CFE9300F962A0 /* TrailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60DFC52D1CFE9300F962A0 /* TrailService.swift */; };
 		CA60DFC82D1D06FC00F962A0 /* TrailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA60DFC72D1D06FC00F962A0 /* TrailViewModel.swift */; };
 		CA775EAF2D1D2B7A002397E7 /* Aboutus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA775EAE2D1D2B7A002397E7 /* Aboutus.swift */; };
+		CA9994722DFD8ECD00BB358E /* TrailViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9994712DFD8ECD00BB358E /* TrailViewNew.swift */; };
+		CA9994742DFDA59700BB358E /* NewRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9994732DFDA59700BB358E /* NewRoute.swift */; };
 		CAA9B8F62D1C6DF600AAC073 /* OnboardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9B8E42D1C6DF600AAC073 /* OnboardingContentView.swift */; };
 		CAA9B8F72D1C6DF600AAC073 /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9B8E52D1C6DF600AAC073 /* OnboardingData.swift */; };
 		CAA9B8F82D1C6DF600AAC073 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9B8E62D1C6DF600AAC073 /* OnboardingView.swift */; };
@@ -80,6 +82,8 @@
 		CA60DFC52D1CFE9300F962A0 /* TrailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailService.swift; sourceTree = "<group>"; };
 		CA60DFC72D1D06FC00F962A0 /* TrailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailViewModel.swift; sourceTree = "<group>"; };
 		CA775EAE2D1D2B7A002397E7 /* Aboutus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aboutus.swift; sourceTree = "<group>"; };
+		CA9994712DFD8ECD00BB358E /* TrailViewNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailViewNew.swift; sourceTree = "<group>"; };
+		CA9994732DFDA59700BB358E /* NewRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoute.swift; sourceTree = "<group>"; };
 		CAA9B8E22D1C6DF600AAC073 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CAA9B8E42D1C6DF600AAC073 /* OnboardingContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContentView.swift; sourceTree = "<group>"; };
 		CAA9B8E52D1C6DF600AAC073 /* OnboardingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				CA31CD022D1C6CCF00977354 /* ContentView.swift */,
 				CA60DFC72D1D06FC00F962A0 /* TrailViewModel.swift */,
 				CA25303E2D770E32005370BA /* RootTabView.swift */,
+				CA9994712DFD8ECD00BB358E /* TrailViewNew.swift */,
 				CA2530402D770EE5005370BA /* FandomView.swift */,
 				CA2530422D770F21005370BA /* NewtrailView.swift */,
 				CA2530442D770F74005370BA /* FindView.swift */,
@@ -167,7 +172,8 @@
 				CA5F4E3C2DDCD6E7007684E6 /* SearchViewModel.swift */,
 				CA5F4E3E2DDCD78F007684E6 /* SearchBar.swift */,
 				CA5F4E402DDCD7DB007684E6 /* SearchView.swift */,
-				CAF3426C2DDDE1D4001CE8AB /* CommunityView.swift */,
+				CA9994732DFDA59700BB358E /* NewRoute.swift */,
+				CA7DCE802DE74A46007D8DDD /* Community */,
 				CAF3426E2DDDE1F8001CE8AB /* UserCardView.swift */,
 				CAF342702DDDE235001CE8AB /* User.swift */,
 				CA31CD042D1C6CD100977354 /* Assets.xcassets */,
@@ -206,6 +212,14 @@
 				CA775EAE2D1D2B7A002397E7 /* Aboutus.swift */,
 			);
 			path = AboutusView;
+			sourceTree = "<group>";
+		};
+		CA7DCE802DE74A46007D8DDD /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				CAF3426C2DDDE1D4001CE8AB /* CommunityView.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		CAA9B8E32D1C6DF600AAC073 /* Preview Content */ = {
@@ -364,6 +378,8 @@
 				CA25304F2D776D69005370BA /* RouteDetailView.swift in Sources */,
 				CA25E46C2D779A220047D5EC /* Networking.swift in Sources */,
 				CAA9B8FC2D1C6DF600AAC073 /* UserProfile.swift in Sources */,
+				CA9994722DFD8ECD00BB358E /* TrailViewNew.swift in Sources */,
+				CA9994742DFDA59700BB358E /* NewRoute.swift in Sources */,
 				CAA9B8FF2D1C6DF600AAC073 /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

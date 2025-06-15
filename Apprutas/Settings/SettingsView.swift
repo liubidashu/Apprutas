@@ -61,6 +61,12 @@ struct SettingsView: View {
             // Секция для управления аккаунтом
             Section(header: Text("Аккаунт")) {
                 Button(role: .destructive) {
+                    viewModel.signOut()
+                } label: {
+                    Text("Выйти")
+                        .foregroundColor(.blue)
+                }
+                Button(role: .destructive) {
                     showAlert = true // Показываем предупреждение
                 } label: {
                     Text("Удалить аккаунт")

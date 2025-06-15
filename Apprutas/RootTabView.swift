@@ -25,7 +25,7 @@ struct RootTabView: View {
                 }
                 .tag(1)
 
-            NewtrailView()
+            TrailViewNew()
                 .tabItem {
                     Image(selectedTab == 2 ? "newtrail_icon_active" : "newtrail_icon_inactive")
                 }

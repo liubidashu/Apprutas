@@ -10,8 +10,8 @@ import SwiftUI
 
 struct AuthView: View {
     @StateObject private var viewModel = AuthViewModel()
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email: String = "user1@email.com"
+    @State private var password: String = "passpass"
     @State private var showRootTabView = false // Новое состояние для перехода
     
     private let accentColor = Color(red: 0.737, green: 0.780, blue: 0.196) // HEX BCD232

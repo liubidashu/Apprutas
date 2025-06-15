@@ -15,6 +15,7 @@ class AuthViewModel: ObservableObject {
     @Published var shouldShowRegistrationView = false // Для перенаправления на регистрацию
     
     private let baseURL = "http://localhost:3000/api/v1"
+    private static let decoder = JSONDecoder()
     
     // MARK: - Регистрация
     func signUp(email: String, password: String, passwordConfirmation: String) {
@@ -35,14 +36,13 @@ class AuthViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         // Правильный формат данных с вложенностью "user"
         let userData: [String: Any] = [
             "user": [
                 "email": email,
                 "password": password,
-                "password_confirmation": passwordConfirmation
+                "password_confermation": passwordConfirmation
             ]
         ]
         
@@ -77,10 +77,12 @@ class AuthViewModel: ObservableObject {
                 switch httpResponse.statusCode {
                 case 201:
                     do {
-                        let decoder = JSONDecoder()
-                        let response = try decoder.decode(RegistrationResponse.self, from: data!)
+                        let response = try Self.decoder.decode(RegistrationResponse.self, from: data!)
                         print("[Auth] Успешная регистрация. ID пользователя:", response.user.id)
-                        self?.signIn(email: email, password: password)
+//                        self?.signIn(email: email, password: password)
+                        UserDefaults.standard.set(response.user.jwt, forKey: "authToken") // Сохраняем токен
+                        self?.isAuthenticated = true
+                        print("[Auth] Успешный регистраций. Токен:", response.user.jwt)
                     } catch {
                         self?.showError("Ошибка при обработке ответа сервера")
                     }
@@ -105,7 +107,12 @@ class AuthViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let credentials = ["email": email, "password": password]
+        let credentials: [String: Any] = [
+            "user": [
+                "email": email,
+                "password": password
+            ]
+        ]
         
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: credentials)
@@ -136,17 +143,15 @@ class AuthViewModel: ObservableObject {
                     return
                 }
                 
+                print("[Auth] Ответ сервера:", String(data: data, encoding: .utf8) ?? "Нет данных")
+                
                 switch httpResponse.statusCode {
                 case 200:
                     do {
-                        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                        if let token = json?["token"] as? String {
-                            UserDefaults.standard.set(token, forKey: "authToken") // Сохраняем токен
-                            self?.isAuthenticated = true
-                            print("[Auth] Успешный вход. Токен:", token)
-                        } else {
-                            self?.showError("Отсутствует токен в ответе")
-                        }
+                        let response = try Self.decoder.decode(RegistrationResponse.self, from: data)
+                        UserDefaults.standard.set(response.user.jwt, forKey: "authToken") // Сохраняем токен
+                        self?.isAuthenticated = true
+                        print("[Auth] Успешный вход. Токен:", response.user.jwt)
                     } catch {
                         self?.showError("Ошибка декодирования токена")
                     }
@@ -247,17 +252,30 @@ class AuthViewModel: ObservableObject {
     }
 }
 
-// Модели для парсинга ответов
+// MARK: - RegistrationResponse
 struct RegistrationResponse: Codable {
     let message: String
     let user: User
     
+    // MARK: - User
     struct User: Codable {
         let id: Int
-        let email: String
-        let created_at: String
-        let updated_at: String
-        let admin: Bool
-        let jti: String
+        let email, jwt: String
     }
 }
+
+
+//// Модели для парсинга ответов
+//struct RegistrationResponse: Codable {
+//    let message: String
+//    let user: User
+//    
+//    struct User: Codable {
+//        let id: Int
+//        let email: String
+//        let created_at: String
+//        let updated_at: String
+//        let admin: Bool
+//        let jti: String
+//    }
+//}
